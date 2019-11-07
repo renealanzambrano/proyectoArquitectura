@@ -23,6 +23,7 @@ class RegistroList(APIView):
         if serializer.is_valid():
             serializer.save()
             datas = serializer.data
+
             return Response (datas)
         return Response(serializer.error_messages,status=status.HTTP_400_BAD_REQUEST)
 
@@ -41,8 +42,8 @@ class RegistroDetail(APIView):
         return Response(serializer.data)
     
     # METODO CONSULTAR EL ID Y ACTULIZAR LOS VALORES DE SUS CAMPOS
-    def put(self, request, id, format=None):
-        student = self.get_object(id)
+    def put(self, request, pk, format=None):
+        student = self.get_object(pk)
         serializer = RegistroSerializers(student, data = request.data)
         if serializer.is_valid():
             serializer.save()
@@ -51,11 +52,7 @@ class RegistroDetail(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     #METODO DE ELIMINACION
-    def delete(self, request, id, format=None):
-        student = self.get_object(id)
-        serializer = RegistroSerializers(student, data = request.data)
-        if serializer.is_valid():
-            serializer.save()
-            datas = serializer.data
-            return Response(datas)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def delete(self, request, pk, format=None):
+        register = self.get_object(pk)
+        register.delete()
+        return Response('Eliminado correctamente')

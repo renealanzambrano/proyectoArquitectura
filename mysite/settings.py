@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'login',
     'Asistencia',
     'registroRFID',
+    'clear_cache',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -54,9 +56,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+	'django.middleware.common.BrokenLinkEmailsMiddleware'
 ]
 
 ROOT_URLCONF = 'mysite.urls'
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 #CORS_ORIGIN_REGEX_WHITELIST=(
  #   'localhost:4200',
@@ -103,7 +108,11 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
    'default': {
       'ENGINE': 'djongo',
-      'NAME': 'mydb1',
+      'NAME': 'mf19',
+	'USER': 'admin',
+	'PASSWORD':'myadminpassword',
+	'HOST':'159.89.157.52',
+	'PORT': 27017
    }
 }
 
