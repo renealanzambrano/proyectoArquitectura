@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'Asistencia',
     'registroRFID',
     'clear_cache',
-    'corsheaders'
+    'corsheaders',
+    'rfidtemp',
 ]
 
 MIDDLEWARE = [
